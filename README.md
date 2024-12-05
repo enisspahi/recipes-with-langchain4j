@@ -56,7 +56,7 @@ This presentation is out of curiosity
 ---
 
 # Demo (2): AI Capable Recipes Search
-[Pact Messaging example](https://github.com/enisspahi/pact-messaging)
+[recipes-with-langchain4j](https://github.com/enisspahi/recipes-with-langchain4j)
 
 ---
 
