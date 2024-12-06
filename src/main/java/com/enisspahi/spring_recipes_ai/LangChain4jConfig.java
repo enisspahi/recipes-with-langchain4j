@@ -5,7 +5,6 @@ import com.enisspahi.spring_recipes_ai.repository.RecipesRepository;
 import com.enisspahi.spring_recipes_ai.service.Nutritionist;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.embedding.onnx.bgesmallenv15q.BgeSmallEnV15QuantizedEmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -26,7 +25,8 @@ import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O_MINI;
 public class LangChain4jConfig {
 
     @Bean
-    Nutritionist nutritionist(@Value("${openAIKey:demo}") String apiKey, ContentRetriever contentRetriever) {
+    Nutritionist nutritionist(@Value("${openAIKey:demo}") String apiKey,
+                              ContentRetriever contentRetriever) {
         var model = OpenAiChatModel.builder()
                 .apiKey(apiKey)
                 .modelName(GPT_4_O_MINI)
@@ -42,11 +42,14 @@ public class LangChain4jConfig {
     }
 
     @Bean
-    ContentRetriever createContentRetriever(RecipesRepository recipesRepository) {
+    ContentRetriever contentRetriever(RecipesRepository recipesRepository) {
 
-        var formattedRecipeSegment = "\"%s\" is made of the following ingredients: %s";
+        var formattedRecipeSegment = "\"%s\" is made of the following ingredients: [%s]; nutrition values: [%s];" ;
         var segments = recipesRepository.findAll().stream()
-                .map(recipe -> formattedRecipeSegment.formatted(recipe.title(), recipe.ingredients().stream().map(Recipe.Ingredient::name).collect(Collectors.joining(", "))))
+                .map(recipe -> formattedRecipeSegment.formatted(
+                        recipe.title(),
+                        recipe.ingredients().stream().map(Recipe.Ingredient::name).collect(Collectors.joining(", ")),
+                        recipe.nutritionFacts().stream().map(Recipe.NutritionFact::name).collect(Collectors.joining(", "))))
                 .map(TextSegment::from)
                 .toList();
 
@@ -60,7 +63,7 @@ public class LangChain4jConfig {
                 .embeddingStore(embeddingStore)
                 .embeddingModel(embeddingModel)
                 .maxResults(5) // on each interaction we will retrieve the 5 most relevant segments
-                .minScore(0.4) // similarity factor
+                .minScore(0.7) // similarity score to consider match
                 .build();
     }
 

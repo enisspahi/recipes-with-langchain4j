@@ -31,8 +31,8 @@ This presentation is out of curiosity and non-deterministic
 ## What is LangChain4j?
 
 * LLMs (OpenAI, Google Vertex AI Gemini, etc) provide APIs 
-* LangChain4j offers a unified API to integrate LLMs into Java applications
-* Interesting features
+* LangChain4j offers a unified abstraction for Java
+* Some interesting features
   * Chat and language models
   * Tools (Function calling)
   * RAG (Retrieval-Augmented-Generation)

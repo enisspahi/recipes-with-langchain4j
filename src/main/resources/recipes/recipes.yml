@@ -71,6 +71,7 @@ recipes:
       - "Bake for 20 minutes or until salmon flakes easily with a fork."
     nutritionFacts:
       - HIGH_PROTEIN
+      - HIGH_CALORIE
 
   - title: Pumpkin Soup
     ingredients:
