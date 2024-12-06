@@ -227,6 +227,7 @@ recipes:
     nutritionFacts:
       - HIGH_PROTEIN
       - CARBS
+      - HIGH_CALORIE
 
   - title: Bolognese Linguine
     ingredients:
@@ -331,6 +332,7 @@ recipes:
     nutritionFacts:
       - HIGH_PROTEIN
       - CARBS
+      - HIGH_CALORIE
 
   - title: Turkey Schnitzel
     ingredients:

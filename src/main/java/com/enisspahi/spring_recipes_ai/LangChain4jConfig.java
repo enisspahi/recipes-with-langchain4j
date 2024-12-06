@@ -37,14 +37,14 @@ public class LangChain4jConfig {
         return AiServices.builder(Nutritionist.class)
                 .chatLanguageModel(model)
                 .contentRetriever(contentRetriever)
-                .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
+//                .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
                 .build();
     }
 
     @Bean
     ContentRetriever createContentRetriever(RecipesRepository recipesRepository) {
 
-        var formattedRecipeSegment = "\"%s\" is made of the following ingredients: [%s]";
+        var formattedRecipeSegment = "\"%s\" is made of the following ingredients: %s";
         var segments = recipesRepository.findAll().stream()
                 .map(recipe -> formattedRecipeSegment.formatted(recipe.title(), recipe.ingredients().stream().map(Recipe.Ingredient::name).collect(Collectors.joining(", "))))
                 .map(TextSegment::from)
@@ -60,7 +60,7 @@ public class LangChain4jConfig {
                 .embeddingStore(embeddingStore)
                 .embeddingModel(embeddingModel)
                 .maxResults(5) // on each interaction we will retrieve the 5 most relevant segments
-                .minScore(0.75) // we want to retrieve segments at least somewhat similar to user query
+                .minScore(0.4) // similarity factor
                 .build();
     }
 
