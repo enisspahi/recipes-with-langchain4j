@@ -24,10 +24,9 @@ public class RecipesAIService {
     }
 
     public List<Recipe> search(String ingredientsPrompt, List<String> nutritionFacts) {
-        var suggestedRecipes = nutritionist.suggestRecipes(ingredientsPrompt);
-        System.out.println("suggestedRecipes : " + suggestedRecipes);
+        var suggestedRecipes = nutritionist.suggestRecipes(ingredientsPrompt, nutritionFacts);
         var sanitized = suggestedRecipes.stream().map(entry -> entry.replaceAll("-", "").strip().stripIndent().stripLeading().stripTrailing()).toList();
-        System.out.println("sanitized : " + sanitized);
+        System.out.println("suggestedRecipes : " + sanitized);
         return recipesRepository.findBy(sanitized, Collections.emptyList(), nutritionFacts);
     }
 

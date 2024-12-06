@@ -3,6 +3,7 @@ package com.enisspahi.spring_recipes_ai.service;
 import com.enisspahi.spring_recipes_ai.model.Recipe;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.V;
 
 import java.util.List;
 
@@ -29,9 +30,10 @@ public interface Nutritionist {
     )
     @UserMessage(
             """
-            Tell me a couple of food titles containing ingredients of {{it}}
+            Tell me a couple of food titles containing ingredients of {{ingredientsPrompt}} and nutritionValues of {{nutritionS}}
             """
     )
-    List<String> suggestRecipes(String text);
+    List<String> suggestRecipes(@V("ingredientsPrompt") String ingredientsPrompt,
+                                @V("nutritionS") List<String> nutritionS);
 
 }

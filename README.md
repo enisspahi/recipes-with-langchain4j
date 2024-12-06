@@ -12,13 +12,7 @@ style: |
   }
 ---
 
-## LangChain4j
-
----
-
-## Safe Harbour Statement
-
-* All what you will hear can be different, this presentation is for motivational purposes ...
+# LangChain4j
 
 ---
 
@@ -30,13 +24,13 @@ All what you will hear can be different, this presentation is for motivational p
 
 ## Safe Harbour Statement (2)
 
-This presentation is out of curiosity         
+This presentation is out of curiosity and non-deterministic   
 
 ---
 
 ## What is LangChain4j?
 
-* LLMs providers (OpenAI, Google Vertex AI Gemini, etc) provide APIs
+* LLMs (OpenAI, Google Vertex AI Gemini, etc) provide APIs 
 * LangChain4j offers a unified API to integrate LLMs into Java applications
 * Interesting features
   * Chat and language models
@@ -55,7 +49,7 @@ This presentation is out of curiosity
 
 ---
 
-# Demo (2): AI Capable Recipes Search
+# Demo (2): Recipes Search with AI
 [recipes-with-langchain4j](https://github.com/enisspahi/recipes-with-langchain4j)
 
 ---

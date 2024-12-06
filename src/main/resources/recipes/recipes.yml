@@ -226,6 +226,7 @@ recipes:
       - "Squeeze lime over the tacos and serve."
     nutritionFacts:
       - HIGH_PROTEIN
+      - CARBS
 
   - title: Bolognese Linguine
     ingredients:
